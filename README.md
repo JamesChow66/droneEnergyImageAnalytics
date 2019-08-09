@@ -1,10 +1,11 @@
-# Pole Detection and Classification
+# NRECA - Pole Detection and Classification
 
 NRECA Pole detection and Classification project initial stage
 
-Author: James Zhou (Data Science Intern at NRECA)
+Author: Zhe(James) Zhou (Data Science Intern at NRECA)
 
 Supervisor: David Pinney (Analytics Program Manager at NRECA)
+
 
 ## Introduction
 
@@ -14,7 +15,9 @@ Since we do not have sufficent amount of image data for training the Mask-R-CNN,
 
 ## Part 1 - Synthetic Image Generation
 
-Since we do not have any real data available yet, I decided to make a synthetic image dataset
+Since we do not have any real data available yet, I decided to make a synthetic image dataset.
+
+The json file that stores patterns' segmention area info and boxing info follow the [coco-dataset](http://cocodataset.org/#explore) format
 
 ### Prerequisites
 
@@ -103,7 +106,16 @@ Since we do not have any real data available yet, I decided to make a synthetic 
 	
 	**Note:**
 	* Tensorflow 1.13 is recommended, since it works perfectly on my machine.
-	* If you have the latest Tensorflow 2.0Beta installed, Tensorflow
+	* If you have the latest Tensorflow 2.0Beta installed, Tensorflow2.0 has a tool `tf_upgrade_v2` to to help transition legacy code to the new API. [See details](https://www.tensorflow.org/beta/guide/upgrade)
+	* If you have trouble with `tf_upgrade_v2`, the following Python code can also do the trick for you:
+		
+		```python
+		import tensorflow.compat.v1 as tf
+		tf.disable_v2_behavior()
+		
+		```
+		
+		This makes possible to run 1.X code, unmodified (except for contrib), in TensorFlow 2.0
 	
 
 10. Try the following code in your Python console:
@@ -178,7 +190,7 @@ imgaug
 </br>
 
 ## Video Inference
-Now We have trained our Mask-R-CNN model and performed inference on image. The further step we  can take is to perform video inference. Thankfully, my buddy **Chengwei Zhang** wrote tool to achieve this. Bellow is his repo and tutorial:
+Now We have trained our Mask-R-CNN model and performed inference on image. The further step we  can take is to perform video inference. Thankfully, my buddy **Chengwei Zhang** wrote a tool to achieve this. Bellow is his repo and tutorial:
 
 * [GitHub repo](https://github.com/Tony607/colab-mask-rcnn)
 * [Tutorial](https://www.dlology.com/blog/how-to-run-object-detection-and-segmentation-on-video-fast-for-free/)
